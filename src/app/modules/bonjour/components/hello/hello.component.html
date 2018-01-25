@@ -4,6 +4,24 @@
 
 <!-- Don't works: RootUselessComponent is not part of BonjourModule -->
 <!-- <app-root-useless></app-root-useless> -->
-
-<!--  -->
 <app-useless></app-useless>
+
+<button type="button" (click)="addTruc()">addTruc()</button>
+
+<h3>azeList$</h3>
+
+<button type="button" (click)="addAzeToTheList()">add aze to the list</button>
+<button type="button" (click)="addAzeToTheListWithNext()">add AZE to the list (with next)</button>
+
+<ul>
+  <li *ngFor="let aze of azeList$ | async">{{ aze }}</li>
+</ul>
+
+
+<h3>qsdList$</h3>
+
+<button type="button" (click)="addQsdToTheList()">add qsd to the list</button>
+
+<ul>
+  <li *ngFor="let qsd of qsdList$ | async">{{ qsd }}</li>
+</ul>

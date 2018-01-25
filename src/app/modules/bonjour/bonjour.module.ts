@@ -11,7 +11,7 @@ import { AzeService } from './services/aze.service';
   imports: [
     CommonModule,
     BonjourRoutingModule,
-    SharedModule,
+    SharedModule.forChild(),
   ],
   declarations: [ HelloComponent ],
   providers: [ AzeService ]
