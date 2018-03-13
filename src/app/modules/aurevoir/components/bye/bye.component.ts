@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-// No compile errors but do not works because AzeService have no providers in AurevoirModule
-// import { AzeService } from '../../../bonjour/services/aze.service';
-import { Truc } from '../../../../models/truc.model';
+import { FormBuilder, FormControl } from '@angular/forms';
+import * as faker from 'faker';
 
 @Component({
   selector: 'app-bye',
@@ -10,25 +8,41 @@ import { Truc } from '../../../../models/truc.model';
   styleUrls: ['./bye.component.scss']
 })
 export class ByeComponent implements OnInit {
+  list: string[] = [];
 
-  showBonus = false;
+  variableFormGroup = this.formBuilder.group({
+
+  });
+
+  formGroup = this.formBuilder.group({
+    fixed: [false, ''],
+    variable: this.variableFormGroup,
+  });
 
   constructor(
-    // public azeService: AzeService
+    public formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
-    // this.azeService.setAze('zaeazezae');
-    // console.log(this.azeService.getAze());
+    this.formGroup.valueChanges.subscribe(changes => {
+      console.log(changes);
+    });
 
-    const truc = new Truc();
-    console.log(truc);
-
-    this.rollShowBonus();
+    // Generate 10 variable inputs
+    for (let i = 0; i < 10; i++) {
+      this.addOneVariableInput();
+    }
   }
 
-  rollShowBonus() {
-    this.showBonus = (Math.random() > .5) ? true : false;
+  addOneVariableInput() {
+    const formControl = new FormControl();
+    const formControlName = faker.random.uuid();
+
+    // Add the form control
+    this.variableFormGroup.addControl(formControlName, formControl);
+
+    // Add the item that will generate the input
+    this.list.push(formControlName);
   }
 
 }

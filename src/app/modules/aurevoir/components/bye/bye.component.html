@@ -1,5 +1,18 @@
-<p>
-  bye<ng-container *ngIf="showBonus">-bye</ng-container> works!
-</p>
 
-<button type="button" (click)="rollShowBonus()">Click !</button>
+
+------- TEST VARIABLE FORM CONTROL -----------
+<form [formGroup]="formGroup">
+  <label>
+      <input type="checkbox" formControlName="fixed"> Fixed formControl
+  </label>
+
+  <div>---</div>
+
+  <button type="button" (click)="addOneVariableInput()">addOneVariableInput()</button>
+
+  <ul formGroupName="variable">
+    <li *ngFor="let item of list">
+        <input type="checkbox" [formControlName]="item"> {{ item }}
+    </li>
+  </ul>
+</form>
